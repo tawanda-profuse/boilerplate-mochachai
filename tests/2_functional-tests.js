@@ -68,10 +68,19 @@ suite('Functional Tests', function () {
 
 const Browser = require('zombie');
 
+// Adding the project url to the site property of the variable
+Browser.site = 'https://mochachai.tawanda-profuse.repl.co';
+
 suite('Functional Tests with Zombie.js', function () {
   this.timeout(5000);
 
+  // Instantiating a new instance of the Browser object declared above
+  const browser = new Browser();
 
+  //The suiteSetup hook directs the browser to the / route
+  suiteSetup(function(done){
+    return browser.visit('/', done);
+  })
 
   suite('Headless browser', function () {
     test('should have a working "site" property', function() {
